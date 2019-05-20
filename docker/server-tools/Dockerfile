@@ -1,4 +1,4 @@
-FROM eko-server:latest
+FROM hackorama/eko-server:latest
 
 RUN apk add --no-cache \
   tcpdump \
