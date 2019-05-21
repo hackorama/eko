@@ -15,7 +15,9 @@ RUN apk add --no-cache \
   && ssh-keygen -t rsa     -f /etc/ssh/ssh_host_rsa_key     -q -P ""  \
   && ssh-keygen -t ecdsa   -f /etc/ssh/ssh_host_ecdsa_key   -q -P ""  \
   && ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -q -P ""  \
-  && echo "root:root" | chpasswd
+  && echo "root:root" | chpasswd \
+  && echo "EKO TEST SSH SERVER" > /etc/motd \
+  && echo "nc, dig, netstat, curl, wget, ssh, tcpdump, traceroute, iproute, ethtool" >> /etc/motd
 
 EXPOSE 22
 
