@@ -3,12 +3,14 @@ FROM alpine
 RUN apk add --no-cache \
   bash \
   bind-tools \
+  curl \
   ethtool \
   iproute2 \
   net-tools \
   netcat-openbsd \
   openssh \
   tcpdump \
+  wget \
   && sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config \
   && ssh-keygen -t rsa     -f /etc/ssh/ssh_host_rsa_key     -q -P ""  \
   && ssh-keygen -t ecdsa   -f /etc/ssh/ssh_host_ecdsa_key   -q -P ""  \
