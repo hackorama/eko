@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: eko
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: eko-service
+  namespace: eko
+spec:
+  type: NodePort
+  ports:
+    - name: http
+      port: 80
+      nodePort: 30080
+      targetPort: 80
+    - name: https
+      port: 443
+      nodePort: 30443
+      targetPort: 80
+    - name: tcp
+      port: 55
+      nodePort: 30055
+      targetPort: 55
+  selector:
+    app: eko-server
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: eko-server
+  namespace: eko
+spec:
+  serviceName: eko-service
+  selector:
+    matchLabels:
+      app: eko-server
+  template:
+    metadata:
+      labels:
+        app: eko-server
+    spec:
+      containers:
+      - image: hackorama/eko-server
+        imagePullPolicy: IfNotPresent
+        name: eko
+        env:
+          - name: HTTP_PORT
+            value: "80"
+          - name: HTTPS_PORT
+            value: "443"
+          - name: TCP_PORT
+            value: "55"
+          - name: VERBOSE
+            value: "1"
+          - name: NAME
+            value: ""
+        ports:
+        - containerPort: 80
+        - containerPort: 443
+        - containerPort: 55
