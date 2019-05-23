@@ -37,7 +37,7 @@ EKO_SERVER_0.0.0.0_HTTP:80_HTTPS:443_TCP:55
 ```
 
 ```
-hackorama@hackorama k8s  (master %=) $ curl -k http://192.168.64.3:30443
+hackorama@hackorama k8s  (master %=) $ curl -k https://192.168.64.3:30443
 CLIENT HOST      : 172.17.0.1:61707
 REQUEST_TYPE PATH: GET /
 SERVER VERSION   : SimpleHTTP/0.6
